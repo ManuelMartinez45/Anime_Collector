@@ -1,0 +1,55 @@
+{% extends 'base.html' %} {% block content %}
+<h1>Anime List</h1>
+{% for anime in animes %}
+<div class="card sticky-action">
+    <div class="card-image waves-effect waves-block waves-light">
+      <img class="activator" src={{anime.img}}>
+    </div>
+    <div class="card-content card-action">
+      <span class="card-title activator grey-text text-darken-4">{{ anime.title}}<i class="material-icons right">more_vert</i></span>
+      <p><b>Director: </b> 
+        {% for director in anime.director %}  
+        {{ director }},
+        {% endfor %}
+      </p>
+      <p>
+        <b>Genre: </b>
+        {% for genre in anime.genre%}
+        {{genre}},
+        {% endfor %}
+    </p>
+    <p>
+          <b>Seasons: </b>{{anime.seasons}}
+          <b>Episodes: </b>{{anime.episodes}}
+      </p>
+
+      <!-- <p><a href="#">This is a link</a></p> -->
+    </div>
+    <div class="card-reveal">
+      <span class="card-title grey-text text-darken-4">{{ anime.title }}<i class="material-icons right">close</i></span>
+      <p>{{ anime.description }}</p>
+    </div>
+  </div>
+<!-- <div class="card">
+    <div class="card-content">
+        <h1 class="card-title">{{ anime.title }}</h1>
+        <h3>Director: 
+            {% for director in anime.director %}
+                {{ director }},
+            {% endfor %}
+        </h3>
+        <p>Description: {{ anime.description }}</p>
+        <p>Release:  {{ anime.release }}</p>
+        <p>Seasons:  {{ anime.seasons }}</p>
+        <p>Episodes:  {{ anime.episodes }}</p>
+        <p>Studio:   {{ anime.studio }}</p>
+        <p>Genre: 
+            {% for genre in anime.genre %}
+                {{genre}}
+            {% endfor %}
+        </p>
+    </div>
+</div> -->
+{% endfor %}
+{% endblock %}
+
