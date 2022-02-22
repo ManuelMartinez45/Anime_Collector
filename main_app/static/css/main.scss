@@ -1,0 +1,55 @@
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+  
+main {
+  flex: 1 0 auto;
+}
+
+footer {
+  padding-top: 0;
+  text-align: right;
+}
+
+h1{
+  text-align: center
+}
+
+
+#detail_page{
+    section{
+        display: flex;
+        width: 100%;
+        img{
+            display:flex;
+            justify-self: center;
+            width: 50%;
+        }
+        #main_info{
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+            align-items: center;
+
+            #director{
+                margin: 30% auto 10%;
+                width: 75%;
+                padding-top: 4rem;
+            }
+            #genre_studio{
+                margin: 0 auto;
+                width: 75%;
+            }
+        }
+    }
+    #description{
+        font-size: 1.4em;
+    }
+    #bottom_info{
+        display: flex;
+        justify-content: space-evenly;
+        font-size: 1.2em;
+    }
+}

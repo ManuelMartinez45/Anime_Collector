@@ -2,11 +2,12 @@
 <h1>Anime List</h1>
 {% for anime in animes %}
 <div class="card sticky-action">
-    <div class="card-image waves-effect waves-block waves-light">
-      <img class="activator" src={{anime.img}}>
-    </div>
-    <div class="card-content card-action">
-      <span class="card-title activator grey-text text-darken-4">{{ anime.title}}<i class="material-icons right">more_vert</i></span>
+  <div class="card-image waves-effect waves-block waves-light">
+    <img class="activator" src={{anime.img}}>
+  </div>
+  
+  <div class="card-content card-action">
+    <span class="card-title activator grey-text text-darken-4">{{ anime.title}}<a href="{% url 'detail' anime.id %}"><i class="material-icons right">more_vert</i></a></span>
       <p><b>Director: </b> 
         {% for director in anime.director %}  
         {{ director }},
@@ -28,7 +29,9 @@
     <div class="card-reveal">
       <span class="card-title grey-text text-darken-4">{{ anime.title }}<i class="material-icons right">close</i></span>
       <p>{{ anime.description }}</p>
+      <a href="{% url 'detail' anime.id %}">View More</a>
     </div>
+
   </div>
 <!-- <div class="card">
     <div class="card-content">

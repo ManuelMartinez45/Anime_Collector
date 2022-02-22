@@ -1,0 +1,44 @@
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column; }
+
+main {
+  flex: 1 0 auto; }
+
+footer {
+  padding-top: 0;
+  text-align: right; }
+
+h1 {
+  text-align: center; }
+
+#detail_page section {
+  display: flex;
+  width: 100%; }
+  #detail_page section img {
+    display: flex;
+    justify-self: center;
+    width: 50%; }
+  #detail_page section #main_info {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    align-items: center; }
+    #detail_page section #main_info #director {
+      margin: 30% auto 10%;
+      width: 75%;
+      padding-top: 4rem; }
+    #detail_page section #main_info #genre_studio {
+      margin: 0 auto;
+      width: 75%; }
+
+#detail_page #description {
+  font-size: 1.4em; }
+
+#detail_page #bottom_info {
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 1.2em; }
+
+/*# sourceMappingURL=main.css.map */

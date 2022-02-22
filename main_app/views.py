@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Anime
 
 # class Anime:
 #     def __init__(self, title, description, release, seasons, episodes, studio, genre, director, img ):
@@ -28,4 +29,9 @@ def about(request):
     return render(request, 'about.html')
 
 def anime_index(request):
+    animes = Anime.objects.all()
     return render(request, 'animes/index.html', { 'animes': animes })
+
+def anime_detail(request, anime_id):
+    anime = Anime.objects.get(id=anime_id)
+    return render(request, 'animes/detail.html', { 'anime': anime })

@@ -1,0 +1,53 @@
+{% extends 'base.html' %}{% block content %}
+<div id="detail_page">
+    <h1>{{ anime.title }}</h1>
+    <section>
+        <img src="{{anime.img}}" alt="">
+        <div id="main_info">
+            <h4 id="director"><b>Director:</b> 
+                {% for director in anime.director%}
+                {{ director }},
+                {% endfor %}
+            </h4>
+            <div id="genre_studio">
+                <h5>
+                    <b>Genre: </b>
+                    {% for genre in anime.genre %}
+                    {{ genre }},
+                    {% endfor %}
+                </h5>
+                <h5><b>Studio: </b> {{ anime.studio }}</h5>
+            </div>
+        </div>
+    </section>
+    <h5><b>Summary: </b></h5>
+    <div id="description">
+        {{ anime.description }}
+    </div>
+    <p id="bottom_info">
+        <span><b>Seasons: </b> {{ anime.seasons }}</span>
+        <span><b>Episodes</b> {{ anime.episodes }}</span>
+        <span><b>Release: </b> {{ anime.release }}</span>
+    </p>
+
+    <!-- <h5>
+        <span><b>Seasons: </b> {{ anime.seasons }}</span>
+        <span><b>Episodes: </b> {{ anime.episodes }}</span> 
+    </h5>
+    <h5><b>Summary:</b> </h5>
+    <div id="description">
+        {{ anime.description }}
+    </div>
+    
+    {% endblock %} -->
+</div>
+    
+    self.title = title
+    #         self.description = description
+    #         self.release = release
+    #         self.seasons = seasons
+    #         self.episodes = episodes
+    #         self.studio = studio
+    #         self.genre = genre
+    #         self.director = director
+    #         self.img = img
