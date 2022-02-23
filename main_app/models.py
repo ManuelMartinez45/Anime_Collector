@@ -1,16 +1,7 @@
 from django.db import models
+from django.urls import reverse
 from django.contrib.postgres.fields import ArrayField
 
-# self.title = title
-#         self.description = description
-#         self.release = release
-#         self.seasons = seasons
-#         self.episodes = episodes
-#         self.studio = studio
-#         self.genre = genre
-#         self.director = director
-#         self.img = img
-# Create your models here.
 def get_genre_default():
     return list('')
 
@@ -29,10 +20,11 @@ class Anime(models.Model):
     genre = ArrayField(models.CharField(max_length=250), default=get_genre_default)
     director = ArrayField(models.CharField(max_length=250), default=get_director_default)
     
-    # description = models.TextField()
-
     def __str__(self):
         return self.title
+    
+    def get_absolute_url(self):
+        return reverse('detail', kwargs={'anime_id': self.id})
 # anime =[ 
 #     Anime(title="Demon Slayer: Kimetsu No Yaiba", studio="Ufotable", release="2019 - Present", genre=['Dark Fantasy', 'Adventure', 'Martial Arts'], director=['Koyaharu Gotouge'], img='https://www.whats-on-netflix.com/wp-content/uploads/2021/01/demon-slayer-kimetsu-no-yaiba-season-1-coming-to-netflix.jpg', description='a Japanese manga series written and illustrated by Koyoharu Gotouge. It follows teenage Tanjiro Kamado, who strives to become a demon slayer after his family was slaughtered and his younger sister Nezuko turned into a demon.', episodes=26, seasons=2),
 #     Anime(title='Cowboy Bebop', description="Set in 2071, in a post-apocalyptic world where Earth has become largely uninhabitable, the story follows a ragtag group of bounty hunters, known as cowboys, aboard the spaceship 'Bebop'. As they traverse planets and moons in search of wanted fugitives, each cowboy contends with shadows from the past they can't outrun.",release='October 24, 1998 - April 24, 1999', seasons='1', episodes='26', studio='Sunrise', genre=['Neo-Noir', 'Space Western'], director=['Shinchiro Watanabe'], img='https://img1.hulu.com/user/v3/artwork/af54be93-ee11-475c-b786-3543a9a7d4ba?base_image_bucket_name=image_manager&base_image=9c7dd5d7-6578-41d9-abd4-57d410e62ea1&size=1200x630&format=jpeg'),

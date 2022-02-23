@@ -41,4 +41,10 @@ h1 {
   justify-content: space-evenly;
   font-size: 1.2em; }
 
+#form_page {
+  width: 100%; }
+  #form_page #submit_btn {
+    display: flex;
+    margin: 1rem auto; }
+
 /*# sourceMappingURL=main.css.map */

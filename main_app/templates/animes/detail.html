@@ -29,7 +29,11 @@
         <span><b>Episodes</b> {{ anime.episodes }}</span>
         <span><b>Release: </b> {{ anime.release }}</span>
     </p>
-
+    <div>
+        <a href="{% url 'anime_update' anime.id %}">Edit</a>
+        <a href="{% url 'anime_delete' anime.id %}">Delete</a>
+    </div>
+</div>
     <!-- <h5>
         <span><b>Seasons: </b> {{ anime.seasons }}</span>
         <span><b>Episodes: </b> {{ anime.episodes }}</span> 
@@ -40,7 +44,6 @@
     </div>
     
     {% endblock %} -->
-</div>
     
     self.title = title
     #         self.description = description
