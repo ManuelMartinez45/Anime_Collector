@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 libsass = "*"
 django-sass-processor = "*"
+boto3 = "*"
+uuid = "*"
 
 [dev-packages]
 

@@ -1,0 +1,16 @@
+{% extends 'base.html' %} {% block content %}
+{% if object %}
+<div id="form_page">
+    <h1>{{object.title}}</h1>
+    {% else %}
+    <h1>Add Voice Actor</h1>
+    {% endif %}
+    <form action="" method="POST">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <input id='submit_btn' type="submit" value="Submit" class="btn">
+    </form>
+</div>
+{% endblock %}

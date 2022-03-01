@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'anime_collector.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'anime_collector',
+        'NAME': 'anime_collection',
     }
 }
 

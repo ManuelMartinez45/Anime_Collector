@@ -1,0 +1,17 @@
+{% extends 'base.html'%} {% block content%}
+<div id="voice_actor_index">
+    <div class="row">        
+        <a id='add_vc' class="col s2 offset-s11 waves-effect waves-light btn modal-trigger" href="{% url 'voice_actor_create' %}">Add Voice Actor</a>
+        <h1>Voice Actors</h1>
+        <hr>
+        <div class="row">
+            {% for voice_actor in voice_actors %}
+            <div class="vc_card col s3">
+                <h5>{{voice_actor.name}}</h5>
+                <a href="{% url 'voice_actor_delete' voice_actor.pk%}">Delete</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

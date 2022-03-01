@@ -2,7 +2,15 @@
 <div id="detail_page">
     <h1>{{ anime.title }}</h1>
     <section>
-        <img src="{{anime.img}}" alt="">
+        <div id="detail_img">
+            {% if anime.photo_set %}
+            <img id='detail_anime_img' src="{{ anime.photo_set.last.url }}" alt="">
+            {% else %}
+            <img src="https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg" alt="">
+            {% endif %}
+            <br>
+            
+        </div>
         <div id="main_info">
             <h4 id="director"><b>Director:</b> 
                 {% for director in anime.director%}
@@ -16,10 +24,38 @@
                     {{ genre }},
                     {% endfor %}
                 </h5>
-                <h5><b>Studio: </b> {{ anime.studio }}</h5>
+                <h5>
+                    <b>Studio: </b>
+                    {% if anime.studio.count %}
+                    {% for studio in anime.studio.all %}
+                    <img src="{{studio.img}}" alt="">
+                    {% endfor %}
+                    {% endif %}
+                </h5>
+                <button id='show_studios' class="btn">Add Studio</button>
+                <button id="close_list" class="btn red hide"><i class="material-icons ">close</i></button>
+                <ul id='studio_list'class="hide">
+                    {% for studio in studios %}
+                    <form action="{% url 'add_studio' anime.id studio.id %}" method="POST">
+                        {% csrf_token %}
+                        <li class="detail_studio"><button type="submit"><img src="{{ studio.img }}" alt=""></button></li>
+                    </form>
+                    {% endfor %}
+                </ul>
             </div>
         </div>
+        
     </section>
+    <form 
+            action="{% url 'add_photo' anime.id %}"
+            enctype="multipart/form-data"
+            method="POST"
+        >
+            {% csrf_token %}
+            <input type="file" name="photo-file" id="">
+            <br> <br>
+            <input type="submit" value="Upload Photo" class="btn">
+        </form>
     <h5><b>Summary: </b></h5>
     <div id="description">
         {{ anime.description }}
@@ -28,29 +64,124 @@
         <span><b>Seasons: </b> {{ anime.seasons }}</span>
         <span><b>Episodes</b> {{ anime.episodes }}</span>
         <span><b>Release: </b> {{ anime.release }}</span>
+        <br>
     </p>
+    <p>
+        <span><b>Voice Actors: </b>
+            <button id="show_vc" class="btn"><i class="material-icons">add_circle_outline</i></button>
+            <button id="close_vc" class="btn red hide"><i class="material-icons">close</i></button>
+
+            <ul id="vc_list" class="hide">
+                {% for voice_actor in voice_actors %}
+                <form action="{% url 'add_voice_actor' anime.id voice_actor.id%}" method="POST">
+                    {% csrf_token %}
+                    <li><button type="submit">{{voice_actor.name}}</button></li>
+                </form>
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for voice_actor in anime.voice_actor.all %}
+                <li>{{ voice_actor.name }}</li>
+                {% endfor %}
+            </ul>
+        </span>
+    </p>
+
+    
     <div>
         <a href="{% url 'anime_update' anime.id %}">Edit</a>
         <a href="{% url 'anime_delete' anime.id %}">Delete</a>
     </div>
-</div>
-    <!-- <h5>
-        <span><b>Seasons: </b> {{ anime.seasons }}</span>
-        <span><b>Episodes: </b> {{ anime.episodes }}</span> 
-    </h5>
-    <h5><b>Summary:</b> </h5>
-    <div id="description">
-        {{ anime.description }}
+    <div class="row">
+        <div class="col s12">
+            <h4>Episode List 
+                <button id='add_episode' class="btn"><i class="material-icons">add_circle_outline</i></button>
+                <button id="close_form" class="btn red hide"><i class="material-icons">close</i></button>
+            </h4>
+            
+            <form id='episode_form' class='hide' action="{% url 'add_episode' anime.id %}" method="POST">
+                {% csrf_token %}{{ episode_form.as_table }}
+                <input type="submit" value="Add Episode" class="btn">
+            </form>
+            <div class="episode_table">
+                <table class="striped">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Director</th>
+                            <th>Original Air Date</th>
+                            <th>English Air Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for episode in anime.episode_set.all %}
+                        <tr>
+                            <td>{{ episode.title }}</td>
+                            <td>{{ episode.director }}</td>
+                            <td>{{ episode.air_date }}</td>
+                            <td>{{ episode.eng_air_date }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
+</div>
+
+<script>
+
+    const air_date = $('#id_air_date')
+    const eng_air_date = $('#id_eng_air_date')
+
+    M.Datepicker.init(air_date, {
+        format: 'yyyy-mm-dd',
+        defaultDate: new Date(),
+        setDefaultDate: true,
+        autoClose: true
+    })
+    M.Datepicker.init(eng_air_date, {
+        format: 'yyyy-mm-dd',
+        defaultDate: new Date(),
+        setDefaultDate: true,
+        autoClose: true
+    })
+
     
-    {% endblock %} -->
-    
-    self.title = title
-    #         self.description = description
-    #         self.release = release
-    #         self.seasons = seasons
-    #         self.episodes = episodes
-    #         self.studio = studio
-    #         self.genre = genre
-    #         self.director = director
-    #         self.img = img
+
+    $('#show_vc').on('click', () => {
+        $('#vc_list').removeClass('hide')
+        $('#close_vc').removeClass('hide')
+        $('#show_vc').addClass('hide')
+    })
+
+    $('#close_vc').on('click', () => {
+        $('#vc_list').addClass('hide')
+        $('#close_vc').addClass('hide')
+        $('#show_vc').removeClass('hide')
+    })
+    $('#show_studios').on('click', () => {
+        $('#studio_list').removeClass('hide')
+        $('#close_list').removeClass('hide')
+        $('#show_studios').addClass('hide')
+    })
+
+    $('#close_list').on('click', () => {
+        $('#studio_list').addClass('hide')
+        $('#close_list').addClass('hide')
+        $('#show_studios').removeClass('hide')
+    })
+
+    $('#add_episode').on('click', () => {
+        $('#episode_form').removeClass('hide')
+        $('#close_form').removeClass('hide')
+        $('#add_episode').addClass('hide')
+    })
+
+    $('#close_form').on('click', () => {
+        $('#episode_form').addClass('hide')
+        $('#close_form').addClass('hide')
+        $('#add_episode').removeClass('hide')
+    })
+</script>
+{% endblock %}

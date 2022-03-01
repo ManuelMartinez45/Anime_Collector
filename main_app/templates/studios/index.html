@@ -1,0 +1,14 @@
+{% extends 'base.html' %}{% block content %}
+<div class="studio_index">
+    <h1>Studios</h1>
+    <hr>
+    <div class="row">
+        {% for studio in studios %}
+        <div class=" col s4 studio_card">
+            <img src="{{studio.img}}" alt="">
+            <h5>{{studio.name}}</h5>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

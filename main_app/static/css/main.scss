@@ -1,11 +1,23 @@
+$secondary-color: #f58549;
+$primary-color: #772f1a;
+
 body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+    color: $secondary-color;
   }
   
+a{
+    color: $primary-color;
+}
+
 main {
   flex: 1 0 auto;
+}
+
+header{
+    background-color: $primary-color;
 }
 
 footer {
@@ -13,12 +25,33 @@ footer {
   text-align: right;
 }
 
+#footer-nav{
+    background-color: $primary-color;
+}
+
 h1{
-  text-align: center
+  text-align: center;
+  margin-bottom: 2px;
+}
+
+hr{
+    background-color: $primary-color;
+    width: 75%;
+    height: .5px;
+    margin-bottom: 1.5em;
+}
+
+.nav-wrapper{
+    background-color: $primary-color;
+}
+
+#logo{
+    margin-left: 25px;
 }
 
 
 #detail_page{
+    
     section{
         display: flex;
         width: 100%;
@@ -27,11 +60,20 @@ h1{
             justify-self: center;
             width: 50%;
         }
+        #detail_img{
+            width: 200%;
+            margin-right: 50px;
+            img{
+                width: 100%;
+                height: 100%;
+            }
+        }
         #main_info{
             display: flex;
             flex-direction: column;
             width: 50%;
             align-items: center;
+            justify-content: flex-end;
 
             #director{
                 margin: 30% auto 10%;
@@ -42,6 +84,7 @@ h1{
                 margin: 0 auto;
                 width: 75%;
             }
+
         }
     }
     #description{
@@ -60,4 +103,35 @@ h1{
         display: flex;
         margin: 1rem auto;
     }
+}
+
+#voice_actor_index{
+  width: 100%;
+  height: 100vh;
+  .vc_card{
+      text-align: center;
+      width: 33%;
+      margin-bottom: 1.7em;
+  }
+  #add_vc{
+      background-color: $secondary-color;
+      color: $primary-color;
+  }
+}
+
+.studio_index{
+    width: 100%;
+    .studio_card{
+        h5{
+            text-align: center;
+        }
+        img{
+            width: 100%;
+            height: 10em;
+        }
+    }
+}
+
+.hide{
+    display: none;
 }
