@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from django.contrib.postgres.fields import ArrayField
+from django.contrib.auth.models import User
 
 def get_genre_default():
     return list('')
@@ -36,6 +37,7 @@ class Anime(models.Model):
     director = ArrayField(models.CharField(max_length=250), default=get_director_default)
     studio = models.ManyToManyField(Studios)
     voice_actor = models.ManyToManyField(VoiceActor)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     
     
     def __str__(self):
